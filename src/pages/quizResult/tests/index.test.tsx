@@ -1,4 +1,4 @@
-import {describe} from "vitest";
+import {describe, test} from "vitest";
 
 /**
  * 퀴즈 완료 요구사항
@@ -10,5 +10,5 @@ import {describe} from "vitest";
  * - (필수) 오답 노트 기능
  */
 describe('퀴즈 완료 페이지', () => {
-
+    test('', () => {})
 })

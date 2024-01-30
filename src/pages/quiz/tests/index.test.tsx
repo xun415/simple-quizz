@@ -1,4 +1,4 @@
-import {describe} from "vitest";
+import {describe, test} from "vitest";
 
 /**
  * 퀴즈 요구사항
@@ -9,5 +9,5 @@ import {describe} from "vitest";
  * - (필수) 다음 문항 버튼을 클릭하여 다음 문항으로 이동할 수 있다.
  */
 describe('퀴즈 페이지', () => {
-
+    test('', () => {})
 })
