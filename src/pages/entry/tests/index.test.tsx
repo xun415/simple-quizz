@@ -1,6 +1,6 @@
 import {describe, expect, test} from "vitest";
-import {render} from "../utils/test-util.tsx";
-import IndexPage from "./index.tsx";
+import {render} from "../../../utils/test-util.tsx";
+import IndexPage from "../index.tsx";
 import {screen} from "@testing-library/react";
 
 /**
@@ -16,5 +16,11 @@ describe('인덱스 페이지', () => {
         expect(screen.getByText('퀴즈 풀기')).not.toBeNull()
     })
 
+    test('퀴즈 풀기 버튼 클릭 시 퀴즈 페이지로 이동', () => {
+        const { history } = render(<IndexPage />, {})
 
+        expect(screen.getByText('퀴즈 풀기')).not.toBeNull()
+
+        expect(history.location.pathname).eq('/quiz')
+    })
 })

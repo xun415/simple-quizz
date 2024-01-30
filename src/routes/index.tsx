@@ -1,9 +1,9 @@
 import { useRoutes } from 'react-router-dom'
-import IndexPage from '../pages'
-import QuizResultPage from '../pages/QuizResult.tsx'
-import QuizPage from '../pages/Quiz.tsx'
+import IndexPage from '../pages/entry'
 import Layout from "../components/layout";
-import QuizReviewPage from "../pages/QuizReview.tsx";
+import QuizPage from "../pages/quiz";
+import QuizResultPage from "../pages/quizResult";
+import QuizReviewPage from "../pages/quizReview";
 
 const Routes = () => {
     return useRoutes([
