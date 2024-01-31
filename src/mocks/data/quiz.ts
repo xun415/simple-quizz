@@ -1,6 +1,6 @@
-import {QuizResponse} from "../../apis/quiz.ts";
+import {Quiz} from "../../types.ts";
 
-export const DEFAULT_QUIZ_MOCK_DATA: QuizResponse["results"] = [
+export const DEFAULT_QUIZ_MOCK_DATA: Quiz[] = [
     {
         "type":"multiple",
         "difficulty":"easy",

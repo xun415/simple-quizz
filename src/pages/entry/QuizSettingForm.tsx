@@ -1,19 +1,21 @@
 import {QuizParam} from "@apis/quiz.ts";
 import {Button, FormControl, FormLabel, Select, VStack} from "@chakra-ui/react";
-import {DEFAULT_DIFFICULTY, DEFAULT_NUMBER_OF_QUIZ, QuizDifficulty} from "../../constant.ts";
+import {DEFAULT_DIFFICULTY, DEFAULT_NUMBER_OF_QUIZ, QuizDifficulty, QuizDifficultyType} from "../../constant.ts";
 import {useForm} from "react-hook-form";
 
 type SettingFormValues = QuizParam
 
 type Props = {
+    initDifficulty?: QuizDifficultyType
+    initAmount?: number
     onSubmit: (formData: SettingFormValues) => void
 }
 
-const QuizSettingForm = ({ onSubmit }: Props) => {
+const QuizSettingForm = ({ initDifficulty, initAmount, onSubmit }: Props) => {
     const { handleSubmit, register } = useForm<SettingFormValues>({
         defaultValues: {
-            difficulty: DEFAULT_DIFFICULTY,
-            amount: DEFAULT_NUMBER_OF_QUIZ
+            difficulty: initDifficulty ?? DEFAULT_DIFFICULTY,
+            amount: initAmount ?? DEFAULT_NUMBER_OF_QUIZ
         }
     })
 

@@ -21,6 +21,6 @@ export type QuizResponse = {
  * @param amount 퀴즈 갯수
  * @param difficulty 난이도
  */
-export async function getQuiz({ amount = 10, difficulty }: QuizParam): Promise<AxiosResponse<QuizResponse>> {
-    return axios.get(`https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}`)
+export async function getQuiz({ amount = 10, difficulty = '' }: QuizParam): Promise<AxiosResponse<QuizResponse>> {
+    return axios.get(`https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`)
 }

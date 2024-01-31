@@ -22,6 +22,7 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@/*": ["src/*"],
+      "@assets/*": ["./assets/*"],
       "@components/*": ["./components/*"],
       "@utils/*": ["./utils/*"],
       "@pages/*": ["./pages/*"],
