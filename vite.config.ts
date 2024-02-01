@@ -6,7 +6,7 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   // gh-pages config
-  base: '/simple-quiz/',
+  base: '/simple-quizz/',
   test: {
     globals: true,
     environment: "jsdom",

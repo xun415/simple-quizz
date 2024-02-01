@@ -5,7 +5,7 @@ import {ChakraProvider} from "@chakra-ui/react";
 function App() {
 
   return (
-      <BrowserRouter basename={'/simple-quiz'}>
+      <BrowserRouter basename={'/simple-quizz'}>
           <ChakraProvider>
               <Routes />
           </ChakraProvider>
