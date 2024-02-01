@@ -1,7 +1,7 @@
 import {beforeEach, describe, expect, test} from "vitest";
-import {useQuizGameStore} from "../../../stores/useQuizGameStore.ts";
+import { useQuizGameStore} from "../../../stores/useQuizGameStore.ts";
 import {DEFAULT_QUIZ_MOCK_DATA} from "../../../mocks/data/quiz.ts";
-import {render, screen} from "@utils/test-util.tsx";
+import {render, screen, userEvent, waitFor} from "@utils/test-util.tsx";
 import QuizResultPage from '../index.tsx'
 import {COLOR} from "@assets/styles/vars.css.ts";
 import {rgbToHex} from "@utils/color.ts";
@@ -14,7 +14,7 @@ import {rgbToHex} from "@utils/color.ts";
  * - (필수) 정 오답에 대한 비율을 차트로 표기
  * - (필수) 오답 노트 기능
  */
-describe('퀴즈 완료 페이지', () => {
+describe('퀴즈 완료 페이지', async () => {
     beforeEach(() => {
         useQuizGameStore.setState({
             quizRounds: [
@@ -53,10 +53,7 @@ describe('퀴즈 완료 페이지', () => {
 
         expect(screen.getByText('소요 시간')).not.toBeNull()
 
-        screen.debug()
         expect(screen.getByTestId('time-spent').innerHTML).eq('5 초')
-
-
     })
 
     test('1시간 이상일 때 소요시간에 시간 표시', () => {
@@ -103,5 +100,17 @@ describe('퀴즈 완료 페이지', () => {
                 getComputedStyle(screen.getByText('문제 2'),).color,
                 {isCapitalized: true})
         ).eq(COLOR.RED)
+    })
+
+    test('다시 하기 클릭 시 처음 페이지로 이동', async () => {
+        const {history} = render(<QuizResultPage />, {})
+
+        const retryButton: HTMLButtonElement = screen.getByRole('button', {name: '다시 하기'})
+        expect(retryButton).not.toBeNull()
+        void userEvent.click(retryButton)
+
+        void waitFor(() => {
+            expect(history.location.pathname).eq('/')
+        }, { timeout: 1000 })
     })
 })

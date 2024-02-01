@@ -13,7 +13,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const QuizResultPage = () => {
     const navigate = useNavigate()
-    const { quizRounds, gameStartAt, gameEndAt } = useQuizGameStore()
+    const { quizRounds, gameStartAt, gameEndAt, reset } = useQuizGameStore()
 
     const [correctAnswerCnt, incorrectAnswerCnt] = quizRounds.reduce(
         ([correct, incorrect], round) => {
@@ -29,6 +29,12 @@ const QuizResultPage = () => {
     if (correctAnswerCnt === 0 && incorrectAnswerCnt === 0) {
         window.alert('게임 이력이 없습니다. 초기 페이지로 이동합니다.')
         navigate('/')
+        reset()
+    }
+
+    const onClickRetry = () => {
+        navigate('/')
+        reset()
     }
 
     const formattedTime = formatSecondsToTime(dayjs(gameEndAt).diff(gameStartAt, 'seconds'))
@@ -67,7 +73,7 @@ const QuizResultPage = () => {
                 }]
             }} />
 
-            <Button colorScheme={'blue'}>다시 하기</Button>
+            <Button colorScheme={'blue'} onClick={onClickRetry}>다시 하기</Button>
 
             <Heading as={'h3'} fontSize={'x-large'}>오답 노트</Heading>
             <VStack spacing={4} justify={'center'} w={'full'}>
