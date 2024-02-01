@@ -1,6 +1,7 @@
 import {create} from "zustand";
 import {Quiz} from "../types.ts";
 import dayjs from "dayjs";
+import {decodeHTMLEntities} from "@utils/string.ts";
 
 type QuizRound = Quiz & {
     userAnswer: string | null
@@ -27,7 +28,14 @@ export const useQuizGameStore = create<UseQuizGameStore>(
         ...INIT_STATE,
         initQuizRounds: quizList => {
             set({
-                quizRounds: quizList.map(quiz => ({...quiz, userAnswer: null })),
+                quizRounds: quizList.map(quiz =>
+                    ({
+                        ...quiz,
+                        question: decodeHTMLEntities(quiz.question),
+                        correct_answer: decodeHTMLEntities(quiz.correct_answer),
+                        incorrect_answers: quiz.incorrect_answers.map(v => decodeHTMLEntities(v)),
+                        userAnswer: null
+                    })),
                 gameStartAt: dayjs().format('YYYY-MM-DD HH:mm:ss')
             })
         },

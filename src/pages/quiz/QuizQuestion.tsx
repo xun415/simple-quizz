@@ -2,7 +2,6 @@ import {Quiz} from "../../types.ts";
 import {VStack, Text, Button} from "@chakra-ui/react";
 import {shuffleArray} from "@utils/array.ts";
 import {useEffect, useMemo, useState} from "react";
-import {decodeHTMLEntities} from "@utils/string.ts";
 
 type Props = {
     onSelectAnswer: (userAnswer: string) => void
@@ -41,7 +40,7 @@ const QuizQuestion = ({ quiz, onSelectAnswer }: Props) => {
 
     return (
         <VStack as={'section'} w={'full'}>
-            <Text>{decodeHTMLEntities(question)}</Text>
+            <Text>{question}</Text>
             {
                 optionButtonValues.map(value => (
                     <Button
@@ -50,7 +49,7 @@ const QuizQuestion = ({ quiz, onSelectAnswer }: Props) => {
                         onClick={() => onSelect(value)}
                         w={'full'}
                     >
-                        {decodeHTMLEntities(value)}
+                        {value}
                     </Button>
                 ))
             }
