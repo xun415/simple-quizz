@@ -3,7 +3,6 @@ import IndexPage from '../pages/entry'
 import Layout from "../components/layout";
 import QuizPage from "../pages/quiz";
 import QuizResultPage from "../pages/quizResult";
-import QuizReviewPage from "../pages/quizReview";
 
 const Routes = () => {
     return useRoutes([
@@ -13,8 +12,7 @@ const Routes = () => {
                 { path: '/', element: <IndexPage /> },
                 { path: '/quiz', element: <QuizPage  />,
                 },
-                { path: '/quizResult', element: <QuizResultPage /> },
-                { path: '/quizReview', element: <QuizReviewPage />  }
+                { path: '/quizResult', element: <QuizResultPage /> }
             ]
         }
     ])
