@@ -5,6 +5,7 @@ import {render, screen, userEvent, waitFor} from "@utils/test-util.tsx";
 import QuizResultPage from '../index.tsx'
 import {COLOR} from "@assets/styles/vars.css.ts";
 import {rgbToHex} from "@utils/color.ts";
+import {decodeHTMLEntities} from "@utils/string.ts";
 /**
  * 퀴즈 완료 요구사항
  * 모든 문항을 다 풀면 다음과 같은 결과 정보를 볼 수 있음
@@ -86,7 +87,7 @@ describe('퀴즈 완료 페이지', async () => {
         render(<QuizResultPage />, {})
 
         // 1번문제 -> 정답
-        expect(screen.getByText(DEFAULT_QUIZ_MOCK_DATA[0].question)).not.toBeNull()
+        expect(screen.getByText(decodeHTMLEntities(DEFAULT_QUIZ_MOCK_DATA[0].question))).not.toBeNull()
         expect(
             rgbToHex(
                 getComputedStyle(screen.getByText('문제 1'),).color,
@@ -94,7 +95,7 @@ describe('퀴즈 완료 페이지', async () => {
         ).eq(COLOR.GREEN)
 
         // 2번문제 -> 오답
-        expect(screen.getByText(DEFAULT_QUIZ_MOCK_DATA[1].question)).not.toBeNull()
+        expect(screen.getByText(decodeHTMLEntities(DEFAULT_QUIZ_MOCK_DATA[1].question))).not.toBeNull()
         expect(
             rgbToHex(
                 getComputedStyle(screen.getByText('문제 2'),).color,
