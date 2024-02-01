@@ -48,6 +48,10 @@ const QuizQuestion = ({ quiz, onSelectAnswer }: Props) => {
                         colorScheme={getButtonColor(value)}
                         onClick={() => onSelect(value)}
                         w={'full'}
+                        h={'full'}
+                        p={2}
+                        wordBreak={'break-word'}
+                        whiteSpace={'normal'}
                     >
                         {value}
                     </Button>
